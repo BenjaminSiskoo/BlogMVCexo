@@ -1,0 +1,41 @@
+{% extends 'layout/default_beer.twig' %}
+
+{% block body %}
+<h1 class="titreduhaut text-center mt-5">Confirmation de commande</h1>
+<section id="commandSection" class="container">
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>Nomination</th>
+				<th>Prix HT</th>
+				<th>Prix TTC</th>
+				<th>Quantité</th>
+				<th>Total TTC</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for key, beer in beers %}
+				<tr>
+					<td>{{ beer.title }}</td>
+					<td>{{ beer.priceHT| number_format(2, ',', '.') }}€</td>
+					<td>{{ (beer.priceHT * Tva) | number_format(2, ',', '.') }}€</td>
+					<td>{{ qty[key] }}</td>
+					<td>{{ ((beer.priceHT * Tva) * qty[key])| number_format(2, ',', '.') }}€</td>
+				</tr>
+			{% endfor %}
+			<tr>
+				<td><strong>Total TTC</strong></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td><strong>{{order| number_format(2, ',', '.') }}€</strong></td>
+			</tr>
+		</tbody>
+	</table>
+	<p style="text-align: center">Bonjour, {{ user.lastname }} {{ user.firstname }}, vous trouverez ci-dessus le détail de votre commande.</br>Vouz pouvez la retrouver dans votre espace "profil".</p>
+	<p style="text-align: center">Celle-ci vous sera livrée au {{ user.address }} {{ user.zipCode }} {{ user.city }} sous deux jours</p>
+		<p style="text-align:center">
+			<small>Si vous ne réglez pas sous 10 jours, le prix de votre commande sera majoré.(25%/jour de retard)</small>
+		</p>
+</section>
+{% endblock %}
