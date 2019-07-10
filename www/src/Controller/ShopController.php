@@ -23,9 +23,16 @@ class ShopController extends Controller
     public function all() {
 
         $beers = $this->beer->all();
+
+        $id_config = $this->config->last();
+
+        $infos_config = $this->config->find($id_config);
+
+        $Tva = $infos_config->getTva();
         
         return $this->render('shop/boutique', [
-            'beers' => $beers
+            'beers' => $beers,
+            'Tva' => $Tva
         ]);
     }
 
@@ -114,6 +121,8 @@ class ShopController extends Controller
         ]);
     }
 
+
+    
     public function contact() {
         return $this->render('shop/contact', [
         ]);

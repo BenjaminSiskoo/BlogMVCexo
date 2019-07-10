@@ -8,12 +8,12 @@
 	<div class="row productField">
 		{% for beer in beers %}
 		<article class="col-12 col-sm-6 col-md-4 mb-4">
-			<div class="card p-3" onclick="getProductsModal('{{ beer.title }}', '{{ beer.img }}', '{{ beer.content }}', '{{ (beer.priceHT * constant.TVA)| number_format(2, ',', '.') }}', {{ beer.id }})" data-toggle="modal" data-target="#modal">
+			<div class="card p-3" onclick="getProductsModal('{{ beer.title }}', '{{ beer.img }}', '{{ beer.content }}', '{{ (beer.priceHT * Tva)| number_format(2, ',', '.') }}', {{ beer.id }})" data-toggle="modal" data-target="#modal">
 				<h2 class="text-center">{{ beer.title }}</h2>
 				<div class="d-flex align-items-center justify-content-center"><img class="w-25" src="{{ beer.img }}"
 						alt="{{ beer.title }}" /></div>
 				<p class="text-truncate">{{ beer.content }}</p>
-				<p class="text-right">{{ (beer.priceHT * constant.TVA)| number_format(2, ',', '.') }}€</p>
+				<p class="text-right">{{ (beer.priceHT * Tva)| number_format(2, ',', '.') }}€</p>
 			</div>
 		</article>
 		{% endfor %}
@@ -38,6 +38,8 @@
 					</div>
 				</div>
 				<div class="modal-footer">
+					<input class="form-control" type="number" min="0" name="qty[{{ beer.id }}]" value="0" oninput="" />
+					<button class="btn btn-primary" type="submit">PANIER</button>
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
 				</div>
 			</div>

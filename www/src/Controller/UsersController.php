@@ -159,12 +159,13 @@ class UsersController extends Controller
 
     public function detail(string $token, string $id)//on ajoute les attributs quand on veut passer les infos par l'url
     {
-        $orderslines = $this->orders_line->findAll($token, 'token');
+        $orderslines = $this->orders_line->findAllWithToken($token, 'token');
         $order = $this->orders->find($token, 'token');
         $orderTva = $order->getOrdersTva();
         $orderPriceHT = $order->getPriceHT();       
 
-        //dump($order);
+        dump($orderslines);
+        dump($order);
 
         if (!$orderslines) {
             throw new \Exception('Aucun commande ne correspond à cet ID');
@@ -174,10 +175,9 @@ class UsersController extends Controller
             [
                 'orderslines' => $orderslines,
                 'orderTva' => $orderTva,
-                'orderPriceHT' => $orderPriceHT
+                'orderPriceHT' => $orderPriceHT,
+                'title' => $title
             ]
             );
     }
-
-
 }

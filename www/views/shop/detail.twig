@@ -16,7 +16,7 @@
 		<tbody>
 			{% for ordersline in orderslines %}
 				<tr>
-					<td>{{ ordersline.beer_id }}</td>
+					<td>{{ ordersline.title }}</td>
 					<td>{{ ordersline.beerPriceHT| number_format(2, ',', '.') }}€</td>
 					<td>{{ (ordersline.beerPriceHT * orderTva) | number_format(2, ',', '.') }}€</td>
 					<td>{{ ordersline.beerQty }}</td>
