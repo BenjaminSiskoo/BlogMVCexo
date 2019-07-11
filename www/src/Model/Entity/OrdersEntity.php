@@ -23,9 +23,16 @@ class OrdersEntity extends Entity
 
     private $token;
 
+    private $lines = [];
+
     public function getId()
     {
         return $this->id;
+    }
+
+    public function setId(int $id): void
+    {
+        $this->id = $id;
     }
 
     public function getUserInfosId()
@@ -60,6 +67,16 @@ class OrdersEntity extends Entity
 
     public function getToken()
     {
-        return $this->token;
+        return $this->token;        
+    }
+
+    public function getLines(): array
+    {
+        return $this->lines;
+    }
+
+    public function setLines(array $lines): void
+    {
+        $this->lines = $lines;
     }
 }

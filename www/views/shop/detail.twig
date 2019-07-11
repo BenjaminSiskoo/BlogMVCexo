@@ -14,13 +14,13 @@
 			</tr>
 		</thead>
 		<tbody>
-			{% for ordersline in orderslines %}
+			{% for ordersline in order.lines %}
 				<tr>
 					<td>{{ ordersline.title }}</td>
 					<td>{{ ordersline.beerPriceHT| number_format(2, ',', '.') }}€</td>
-					<td>{{ (ordersline.beerPriceHT * orderTva) | number_format(2, ',', '.') }}€</td>
+					<td>{{ (ordersline.beerPriceHT * order.ordersTva) | number_format(2, ',', '.') }}€</td>
 					<td>{{ ordersline.beerQty }}</td>
-					<td>{{ ((ordersline.beerPriceHT * orderTva) * ordersline.beerQty)| number_format(2, ',', '.') }}€</td>
+					<td>{{ ((ordersline.beerPriceHT * order.ordersTva) * ordersline.beerQty)| number_format(2, ',', '.') }}€</td>
 				</tr>
 			{% endfor %}
 			<tr>
@@ -28,7 +28,7 @@
 				<td></td>
 				<td></td>
 				<td></td>
-				<td><strong>{{((orderPriceHT) * (orderTva))| number_format(2, ',', '.') }}€</strong></td>
+				<td><strong>{{((order.priceHT) * (order.ordersTva))| number_format(2, ',', '.') }}€</strong></td>
 			</tr>
 		</tbody>
 	</table>
